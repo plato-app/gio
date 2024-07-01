@@ -281,7 +281,9 @@ func (w *Window) Invalidate() {
 	defer w.invMu.Unlock()
 	if w.mayInvalidate {
 		w.mayInvalidate = false
-		w.driver.Invalidate()
+		if w.driver != nil {
+			w.driver.Invalidate()
+		}
 	}
 }
 
